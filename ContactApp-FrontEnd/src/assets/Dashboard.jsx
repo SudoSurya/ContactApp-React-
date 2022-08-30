@@ -6,9 +6,8 @@ import LogoutModal from "./LogoutModal";
 export default function Dashboard() {
   const [token, setToken] = useContext(store);
   const [data, setData] = useState(null);
-
   const [openModal, setOpenModal] = useState(false);
-  console.table(data);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/dashboard", {

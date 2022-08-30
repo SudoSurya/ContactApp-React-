@@ -5,6 +5,7 @@ import { useContext, createContext, useState } from "react";
 import Dashboard from "./assets/Dashboard";
 import NewContacts from "./assets/NewContacts";
 import ViewContacts from "./assets/ViewContacts";
+import ErrorPage from "./assets/ErrorPage";
 export const store = createContext();
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -17,6 +18,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/addcontact" element={<NewContacts />} />
           <Route path="/contacts" element={<ViewContacts />} />
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </store.Provider>

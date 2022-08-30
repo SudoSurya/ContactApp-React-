@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { store } from "../App";
+import { Link } from "react-router-dom";
 import axios from "axios";
 export default function NewContacts() {
   const [token, setToken] = useContext(store);
@@ -84,8 +85,16 @@ export default function NewContacts() {
               required
               className="appearance-none  relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Number"
-              {...register("number", { required: true })}
+              {...register("number", {
+                required: true,
+                minLength: 10,
+              })}
             />
+            {errors.number && (
+              <span className="text-red-400">
+                Phone Number Must Be 10 Digits
+              </span>
+            )}
           </div>
           <div>
             <label htmlFor="email-address" className="sr-only">
@@ -104,13 +113,19 @@ export default function NewContacts() {
           </div>
         </div>
 
-        <div>
+        <div className="space-y-2">
           <button
             type="submit"
             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Add Contact
           </button>
+          <Link
+            to="/contacts"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            View Contacts
+          </Link>
         </div>
       </form>
     </div>

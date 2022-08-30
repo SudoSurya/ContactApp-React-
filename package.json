@@ -1,0 +1,20 @@
+{
+  "name": "contact-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm run dev --prefix ContactApp-FrontEnd",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "author": "Surya",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.3"
+  }
+}

@@ -9,6 +9,9 @@ export default function ViewContacts() {
   const [token, setToken] = useContext(store);
   const [contacts, setContacts] = useState(null);
   const [data, setData] = useState(null);
+  if (data) {
+    localStorage.setItem("email", data.email_address);
+  }
   useEffect(() => {
     axios
       .get("https://contact-app-backe.herokuapp.com/dashboard", {
@@ -63,7 +66,7 @@ export default function ViewContacts() {
             {contacts &&
               contacts.map((item, index) => {
                 const { _id, name, number, email, admin_mail } = item;
-                if (data.email_address === admin_mail) {
+                if (localStorage.getItem("email") === admin_mail) {
                   let c = 0;
                   return (
                     <div

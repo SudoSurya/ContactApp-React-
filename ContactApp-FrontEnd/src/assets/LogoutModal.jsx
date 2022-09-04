@@ -71,6 +71,7 @@ export default function LogoutModal() {
                     onClick={() => {
                       setToken(null);
                       localStorage.removeItem("token");
+                      localStorage.removeItem("email");
                     }}
                   >
                     Logout

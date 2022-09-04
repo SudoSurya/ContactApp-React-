@@ -11,10 +11,12 @@ export default function Loginpage() {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    axios.post("http://localhost:5000/login", data).then((res) => {
-      localStorage.setItem("token", res.data.token);
-      setToken(localStorage.getItem("token"));
-    });
+    axios
+      .post("https://contact-app-backe.herokuapp.com/login", data)
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        setToken(localStorage.getItem("token"));
+      });
   };
   if (token) {
     return <Navigate to="/dashboard" />;

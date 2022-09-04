@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server",
+    "server": "npx nodemon server",
     "client": "npm run dev --prefix ContactApp-FrontEnd",
     "dev": "concurrently \"npm run server\" \"npm run client\" "
   },

@@ -15,7 +15,7 @@ export default function NewContacts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/dashboard", {
+      .get("https://contact-app-backe.herokuapp.com/dashboard", {
         headers: {
           "x-token": token,
         },
@@ -27,7 +27,7 @@ export default function NewContacts() {
   }, []);
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/addcontact", data)
+      .post("https://contact-app-backe.herokuapp.com/addcontact", data)
       .then((res) => {
         alert("Contact Added");
       })

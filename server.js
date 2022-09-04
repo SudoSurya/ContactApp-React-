@@ -117,6 +117,16 @@ app.get("/dashboard", LoginMiddleware, async (req, res) => {
   }
 });
 
+app.delete('/delete/:id', async(req,res)=>{
+  try {
+    await ContactSchema.findByIdAndDelete(req.params.id)
+    return res.status(200).send("record Deleted")
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("eroor")
+  }
+})
+
 app.listen(5000, () => {
   console.log("Server Running On Port 5000");
 });

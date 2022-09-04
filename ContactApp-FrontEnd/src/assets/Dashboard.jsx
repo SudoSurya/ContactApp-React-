@@ -10,7 +10,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/dashboard", {
+      .get("https://contact-app-backe.herokuapp.com/dashboard", {
         headers: {
           "x-token": token,
         },

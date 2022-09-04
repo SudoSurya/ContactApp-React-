@@ -11,7 +11,7 @@ export default function ViewContacts() {
   const [data, setData] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/dashboard", {
+      .get("https://contact-app-backe.herokuapp.com/dashboard", {
         headers: {
           "x-token": token,
         },
@@ -23,10 +23,19 @@ export default function ViewContacts() {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/contacts")
+      .get("https://contact-app-backe.herokuapp.com/contacts")
       .then((res) => setContacts(res.data))
       .catch((error) => console.log(error));
   }, []);
+
+  const removeContact = (_id) => {
+    axios
+      .delete(`https://contact-app-backe.herokuapp.com/delete/${_id}`)
+      .then((res) => {
+        setContacts(res.data);
+        alert("Record Deleted");
+      });
+  };
 
   return (
     <div className="bg-gray-300 min-h-screen">
@@ -55,14 +64,21 @@ export default function ViewContacts() {
               contacts.map((item, index) => {
                 const { _id, name, number, email, admin_mail } = item;
                 if (data.email_address === admin_mail) {
+                  let c = 0;
                   return (
                     <div
                       key={_id}
                       className="overflow-hidden bg-white shadow sm:rounded-lg w-[600px] mx-auto my-4"
                     >
-                      <div className="px-4 py-5 sm:px-6">
+                      <div className="px-4 py-5 sm:px-6 flex justify-between">
                         <h3 className="text-lg font-medium leading-6 text-gray-900">
-                          Contact {index}
+                          Contact {c + 1}
+                        </h3>
+                        <h3
+                          className="bg-red-500 cursor-pointer px-5 py-2 rounded-md text-lg text-gray-50"
+                          onClick={() => removeContact(_id)}
+                        >
+                          delete
                         </h3>
                       </div>
                       <div className="border-t border-gray-200">

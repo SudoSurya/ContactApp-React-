@@ -9,7 +9,7 @@ const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://admin:admin@cluster0.nkarxtv.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://admin:admin@api-cluster.3kd7dzu.mongodb.net/?retryWrites=true&w=majority",
     {
       useUnifiedTopology: true,
       useNewUrlParser: true,
@@ -117,16 +117,16 @@ app.get("/dashboard", LoginMiddleware, async (req, res) => {
   }
 });
 
-app.delete('/delete/:id', async(req,res)=>{
+app.delete("/delete/:id", async (req, res) => {
   try {
-    await ContactSchema.findByIdAndDelete(req.params.id)
-    return res.status(200).send("record Deleted")
+    await ContactSchema.findByIdAndDelete(req.params.id);
+    return res.status(200).send("record Deleted");
   } catch (error) {
     console.log(error);
-    return res.status(500).send("eroor")
+    return res.status(500).send("eroor");
   }
-})
+});
 
-app.listen(5000, () => {
+app.listen(5020, () => {
   console.log("Server Running On Port 5000");
 });

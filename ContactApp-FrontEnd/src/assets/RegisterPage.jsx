@@ -13,7 +13,7 @@ export default function RegisterPage() {
 
   const onSubmit = (data) => {
     axios
-      .post("https://contact-app-backe.herokuapp.com/register", data)
+      .post("http://localhost:5000//register", data)
       .then(setOpenModal(true));
   };
 

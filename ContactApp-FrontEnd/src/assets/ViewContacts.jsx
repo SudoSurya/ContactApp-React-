@@ -14,7 +14,7 @@ export default function ViewContacts() {
   }
   useEffect(() => {
     axios
-      .get("https://contact-app-backe.herokuapp.com/dashboard", {
+      .get("http://localhost:5000/dashboard", {
         headers: {
           "x-token": token,
         },
@@ -26,18 +26,16 @@ export default function ViewContacts() {
   }, []);
   useEffect(() => {
     axios
-      .get("https://contact-app-backe.herokuapp.com/contacts")
+      .get("http://localhost:5000/contacts")
       .then((res) => setContacts(res.data))
       .catch((error) => console.log(error));
   }, []);
 
   const removeContact = (_id) => {
-    axios
-      .delete(`https://contact-app-backe.herokuapp.com/delete/${_id}`)
-      .then((res) => {
-        setContacts(res.data);
-        alert("Record Deleted");
-      });
+    axios.delete(`http://localhost:5000/delete/${_id}`).then((res) => {
+      setContacts(res.data);
+      alert("Record Deleted");
+    });
   };
 
   return (
@@ -61,7 +59,7 @@ export default function ViewContacts() {
             Go Back To Dashboard
           </Link>
         </div>
-        {data && (
+        {data ? (
           <>
             {contacts &&
               contacts.map((item, index) => {
@@ -117,6 +115,10 @@ export default function ViewContacts() {
                 }
               })}
           </>
+        ) : (
+          <div>
+            <center>No Contacts Found</center>
+          </div>
         )}
       </div>
     </div>
